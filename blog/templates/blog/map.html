@@ -80,16 +80,45 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 
 
 
+var startSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/red_b.png', // 출발 마커이미지의 주소입니다    
+    startSize = new kakao.maps.Size(50, 45), // 출발 마커이미지의 크기입니다 
+    startOption = { 
+        offset: new kakao.maps.Point(15, 43) // 출발 마커이미지에서 마커의 좌표에 일치시킬 좌표를 설정합니다 (기본값은 이미지의 가운데 아래입니다)
+    };        
+var startImage = new kakao.maps.MarkerImage(startSrc, startSize, startOption);
+    
+var startPosition = new kakao.maps.LatLng(33.450701, 126.570667); 
+
+var startMarker = new kakao.maps.Marker({
+    map: map,
+    position: startPosition,
+    // 출발 마커가 드래그 가능하도록 설정합니다
+    image: startImage // 출발 마커이미지를 설정합니다
+});
 
 
-// 지도를 클릭한 위치에 표출할 마커입니다
-var marker = new kakao.maps.Marker({ 
-    // 지도 중심좌표에 마커를 생성합니다 
-    position: map.getCenter() 
-}); 
-// 지도에 마커를 표시합니다
-marker.setMap(map);
+    
+    
+var arriveSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/blue_b.png', // 도착 마커이미지 주소입니다    
+arriveSize = new kakao.maps.Size(50, 45), // 도착 마커이미지의 크기입니다 
+arriveOption = { 
+    offset: new kakao.maps.Point(15, 43) // 도착 마커이미지에서 마커의 좌표에 일치시킬 좌표를 설정합니다 (기본값은 이미지의 가운데 아래입니다)
+};
 
+// 도착 마커 이미지를 생성합니다
+var arriveImage = new kakao.maps.MarkerImage(arriveSrc, arriveSize, arriveOption);
+    
+// 도착 마커가 표시될 위치입니다 
+var arrivePosition = new kakao.maps.LatLng(33.450701, 126.572667); 
+    
+// 도착 마커를 생성합니다 
+var arriveMarker = new kakao.maps.Marker({  
+    map: map, // 도착 마커가 지도 위에 표시되도록 설정합니다
+    position: arrivePosition,
+    draggable: true, // 도착 마커가 드래그 가능하도록 설정합니다
+    image: arriveImage // 도착 마커이미지를 설정합니다
+});
+        
 // 지도에 클릭 이벤트를 등록합니다
 // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
 kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
@@ -98,15 +127,43 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     var latlng = mouseEvent.latLng; 
     
     // 마커 위치를 클릭한 위치로 옮깁니다
-    marker.setPosition(latlng);
+    startMarker.setPosition(latlng);
     
-    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+    var message = '출발지 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
     message += '경도는 ' + latlng.getLng() + ' 입니다';
     
     var resultDiv = document.getElementById('clickLatlng'); 
     resultDiv.innerHTML = message;
     
 });
+    
+    
+// 지도에 클릭 이벤트를 등록합니다
+// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+kakao.maps.event.addListener(map, 'rightclick', function(mouseEvent) {        
+    
+    // 클릭한 위도, 경도 정보를 가져옵니다 
+    var latlng = mouseEvent.latLng; 
+    
+    // 마커 위치를 클릭한 위치로 옮깁니다
+    arriveMarker.setPosition(latlng);
+    
+    var message = '도착지 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+    message += '경도는 ' + latlng.getLng() + ' 입니다';
+    
+    var resultDiv = document.getElementById('clickLatlng'); 
+    resultDiv.innerHTML = message;
+    
+});
+
+
+
+
+
+
+
+
+
 
 
 
