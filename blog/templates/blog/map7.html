@@ -116,6 +116,13 @@ function here(locPosition){
 
 
 
+
+
+
+
+
+
+
 var startSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/red_b.png', // 출발 마커이미지의 주소입니다    
     startSize = new kakao.maps.Size(50, 45), // 출발 마커이미지의 크기입니다 
     startOption = { 
@@ -282,7 +289,7 @@ for ( var i=0; i<places.length; i++ ) {
     // 마커와 검색결과 항목에 mouseover 했을때
     // 해당 장소에 인포윈도우에 장소명을 표시합니다
     // mouseout 했을 때는 인포윈도우를 닫습니다
-    (function(marker, title, y, x) {
+    (function(marker, title) {
         kakao.maps.event.addListener(marker, 'mouseover', function() {
             displayInfowindow(marker, title);
         });
@@ -290,17 +297,14 @@ for ( var i=0; i<places.length; i++ ) {
         kakao.maps.event.addListener(marker, 'mouseout', function() {
             infowindow.close();
         });
-        itemEl.onclick =  function () {
+        itemEl.onmouseover =  function () {
                 displayInfowindow(marker, title);
-            	
-                var moveLatLon = new kakao.maps.LatLng(y, x);
-    
-    		// 지도 중심을 이동 시킵니다
-    			map.setLevel(3);
-                map.setCenter(moveLatLon);	
             };
-           
-        })(marker, places[i].place_name, places[i].y, places[i].x);
+
+            itemEl.onmouseout =  function () {
+                infowindow.close();
+            };
+        })(marker, places[i].place_name);
 
         fragment.appendChild(itemEl);
     }
