@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<title>ROADING</title>
+	{% block css %}
+	{% endblock css %}
+</head>
+<br>
+<h1 class="font_Recipekorea"><i class="fa fa-spinner fa-pulse fa-fw"></i> ROADing...</h1>
+<div class="navbar" >
+	<a href=><i class="fa fa-fw fa-home"></i>홈</a>
+	<a href="{% url 'pathfinding' %}"><i class="fa fa-fw fa-compass"></i>길찾기</a>
+	<a href=><i class="fa fa-fw fa-map"></i>최근길</a>
+	<a href=><i class="fa fa-fw fa-folder"></i>정보 수정</a>
+<div class="login-container">
+<!--	<form action="/action_page.php"></form>-->
+			<a href = ><button type="submit">Sign up</button></a>
+			<a href = >
+				<button type="submit" >Login</button></a>
+<!--		</form>-->
+  	</div> 
+</div> 
+
+
+<body>
+{% block content %}
+{% endblock content %}
+</body>
+
+</html>
+

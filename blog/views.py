@@ -6,4 +6,10 @@ def post_list(request):
 def map(request):
     return render(request, 'blog/map.html',{})
 
+def home(request):
+    return render(request, 'blog/home.html',{})
+
+def pathfinding(request):
+    return render(request, 'blog/pathfinding.html',{})
+
 # Create your views here.

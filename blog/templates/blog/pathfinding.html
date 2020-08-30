@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+
+{% block css %}
+{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/pathfinding.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- 여기에 body part가 와야함--!>
+    <div class="somediv" >              <!--이부분 고쳐야됨-->
+        <form method="POST" action ="{%url 'pathfinding' %}">
+    {% csrf_token %}
+    <div>
+        <button type="button" class="arrow" id="img_btn"><img src="/static/css/up-and-down-arrows.png" width="90" height="90"></button>
+    </div>
+    <div>
+                     <!--onclick="location.href='selectroad'" 일단 지워놓음....-->
+<!--        <button type="button" class="go" id="img_btn" href="{%url 'home' %}"><img src="/static/go.jpg" width="90" height="90"></button>-->
+              <!--여기 button이었는데 그러면 에러남....이유모름....그래서 input으로 바꿈 -->                   <!--href selectroad으로 해야됨!!!-->
+        <input type="image" src="/static/css/go.jpg" width="90" height="90"name="submit" class="go" id="img_btn" value="Submit" href="{%url 'home' %}"/>
+    </div>
+        <div class="textbox">
+            <label for="ex_input">출발지 입력</label>
+            <input type="text" id="ex_input" name = "starting_point">
+        </div>
+        <div class="textbox">
+            <label for="ex_input2">도착지 입력</label>
+            <input type="text" id="ex_input2" name = "destination_point">
+        </div>
+        </form>
+        </div>
+
+<div class="inputmap">
+    <p>이곳은 최단경로가 들어갈 자리</p>
+    <p>크기에 맞게</p>
+    <p>어쩌구 저쩌구</p>
+    <p>우리팀 다들 너무 잘행</p>
+    <p>색은 모두 통일</p>
+</div>
+
+{% endblock content %}

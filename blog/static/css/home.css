@@ -1,0 +1,38 @@
+.inputmap {
+        border: 2px;
+        border-style: solid;
+        border-color: rgb(19,134,33);
+	/*
+        margin-left: 120px;
+        margin-right: 120px;
+	*/
+	margin:0 auto;
+        /*margin-top: 50px;*/
+        font-family: 'HangeulNuri-Bold';
+    }
+
+
+.jb-wrap {
+	width: 40%;
+	margin: 10px auto;
+	border: none;
+    position: relative;
+}
+
+.jb-wrap img {
+	width: 100%;
+	vertical-align: middle;
+}
+
+.jb-text {
+	padding: 300px 5px;
+	background-color: none;
+	text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'HangeulNuri-Bold';
+    color: rgb(19,134,33);
+}
+
