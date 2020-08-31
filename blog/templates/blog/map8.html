@@ -54,7 +54,6 @@
                     키워드 : <input type="text" value="" id="keyword" size="15">
                     <button type="submit">검색하기</button>
                 </form>
-            
             </div>
         </div>
         <hr>
@@ -64,20 +63,9 @@
 </div>
 <p><em>지도를 클릭해주세요!</em></p>
 <div id="clickLatlng"></div>
-    
-<button onclick="hideMarkers()">마커 감추기</button>
-
-
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=76b5e73e66f42b88f5a7ca869db29023&libraries=services"></script>
 <script>
-
-
-
-
-
-
-
 // 마커를 담을 배열입니다
 var markers = [];
 
@@ -124,6 +112,10 @@ function here(locPosition){
 
 
 
+
+
+
+
 var startSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/red_b.png', // 출발 마커이미지의 주소입니다    
     startSize = new kakao.maps.Size(50, 45), // 출발 마커이미지의 크기입니다 
     startOption = { 
@@ -141,6 +133,8 @@ var startMarker = new kakao.maps.Marker({
 });
 
 
+    
+    
 var arriveSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/blue_b.png', // 도착 마커이미지 주소입니다    
 arriveSize = new kakao.maps.Size(50, 45), // 도착 마커이미지의 크기입니다 
 arriveOption = { 
@@ -159,13 +153,13 @@ var arriveMarker = new kakao.maps.Marker({
     position: arrivePosition,
     image: arriveImage // 도착 마커이미지를 설정합니다
 });
-
-    
-var mouseEvent1 = function(event){
         
-	
+// 지도에 클릭 이벤트를 등록합니다
+// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+    
     // 클릭한 위도, 경도 정보를 가져옵니다 
-    var latlng = event.latLng; 
+    var latlng = mouseEvent.latLng; 
     
     // 마커 위치를 클릭한 위치로 옮깁니다
     startMarker.setPosition(latlng);
@@ -175,17 +169,16 @@ var mouseEvent1 = function(event){
     
     var resultDiv = document.getElementById('clickLatlng'); 
     resultDiv.innerHTML = message;
-};
-
-kakao.maps.event.addListener(map, 'click', mouseEvent1);        
     
-
-
+});
     
-var mouseEvent2 = function(event){
-        
+    
+// 지도에 클릭 이벤트를 등록합니다
+// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+kakao.maps.event.addListener(map, 'rightclick', function(mouseEvent) {        
+    
     // 클릭한 위도, 경도 정보를 가져옵니다 
-    var latlng = event.latLng; 
+    var latlng = mouseEvent.latLng; 
     
     // 마커 위치를 클릭한 위치로 옮깁니다
     arriveMarker.setPosition(latlng);
@@ -195,13 +188,10 @@ var mouseEvent2 = function(event){
     
     var resultDiv = document.getElementById('clickLatlng'); 
     resultDiv.innerHTML = message;
-   
-};
+    
+});
 
-kakao.maps.event.addListener(map, 'rightclick', mouseEvent2);          
-    
-    
-    
+
 
 
 
@@ -223,7 +213,8 @@ var ps = new kakao.maps.services.Places();
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
-
+// 키워드로 장소를 검색합니다
+searchPlaces();
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
@@ -419,16 +410,6 @@ function removeAllChildNods(el) {
         el.removeChild (el.lastChild);
     }
 }
-
-    
-function hideMarkers() {
-kakao.maps.event.removeListener(map, 'click', mouseEvent1);
-kakao.maps.event.removeListener(map, 'rightclick', mouseEvent2);
-
-}   
-    
-
-    
 </script>
 </body>
 </html>
