@@ -65,9 +65,7 @@
 <p><em>지도를 클릭해주세요!</em></p>
 <div id="clickLatlng"></div>
     
-<button onclick="seraching()">검색하기</button>
-<button onclick="reset()">출발, 도착지 다시설정하기</button>    
-    
+<button onclick="hideMarkers()">마커 감추기</button>
 
 
 
@@ -423,19 +421,13 @@ function removeAllChildNods(el) {
 }
 
     
-function seraching() {
+function hideMarkers() {
 kakao.maps.event.removeListener(map, 'click', mouseEvent1);
 kakao.maps.event.removeListener(map, 'rightclick', mouseEvent2);
+
 }   
+    
 
-function reset(){
-kakao.maps.event.addListener(map, 'click', mouseEvent1);   
-kakao.maps.event.addListener(map, 'rightclick', mouseEvent2);       
-}        
-
-    
-    
-    
     
 </script>
 </body>
