@@ -162,18 +162,18 @@ var arriveMarker = new kakao.maps.Marker({
     image: arriveImage // 도착 마커이미지를 설정합니다
 });
 
-var latlng1;    
+    
 var mouseEvent1 = function(event){
         
 	
     // 클릭한 위도, 경도 정보를 가져옵니다 
-    latlng1 = event.latLng; 
+    var latlng = event.latLng; 
     
     // 마커 위치를 클릭한 위치로 옮깁니다
-    startMarker.setPosition(latlng1);
+    startMarker.setPosition(latlng);
     
-    var message = '출발지 위치의 위도는 ' + latlng1.getLat() + ' 이고, ';
-    message += '경도는 ' + latlng1.getLng() + ' 입니다';
+    var message = '출발지 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+    message += '경도는 ' + latlng.getLng() + ' 입니다';
     
     var resultDiv = document.getElementById('clickLatlng'); 
     resultDiv.innerHTML = message;
@@ -182,17 +182,18 @@ var mouseEvent1 = function(event){
 kakao.maps.event.addListener(map, 'click', mouseEvent1);        
     
 
-var latlng2;    
+
+    
 var mouseEvent2 = function(event){
         
     // 클릭한 위도, 경도 정보를 가져옵니다 
-    latlng2 = event.latLng; 
+    var latlng = event.latLng; 
     
     // 마커 위치를 클릭한 위치로 옮깁니다
-    arriveMarker.setPosition(latlng2);
+    arriveMarker.setPosition(latlng);
     
-    var message = '도착지 위치의 위도는 ' + latlng2.getLat() + ' 이고, ';
-    message += '경도는 ' + latlng2.getLng() + ' 입니다';
+    var message = '도착지 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+    message += '경도는 ' + latlng.getLng() + ' 입니다';
     
     var resultDiv = document.getElementById('clickLatlng'); 
     resultDiv.innerHTML = message;
@@ -425,14 +426,6 @@ function removeAllChildNods(el) {
 function seraching() {
 kakao.maps.event.removeListener(map, 'click', mouseEvent1);
 kakao.maps.event.removeListener(map, 'rightclick', mouseEvent2);
-
-var bound = new kakao.maps.LatLngBounds();    
-    
-bound.extend(latlng1);
-bound.extend(latlng2);    
-    
-map.setBounds(bound);
-
 }   
 
 function reset(){
