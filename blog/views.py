@@ -12,4 +12,6 @@ def home(request):
 def pathfinding(request):
     return render(request, 'blog/pathfinding1.html',{})
 
+def test(request):
+    return render(request, 'blog/test.html', {})
 # Create your views here.

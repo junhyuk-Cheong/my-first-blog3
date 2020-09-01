@@ -6,5 +6,6 @@ urlpatterns = [
     path('map', views.map, name='map'),
     path('home', views.home, name='home'),
     path('pathfinding', views.pathfinding, name='pathfinding'),
+    path('test', views.test, name='test'),
 ]
 
